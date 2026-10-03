@@ -1,0 +1,41 @@
+@if (cargando) {
+  <ion-text color="medium">
+    <p>Cargando películas...</p>
+  </ion-text>
+} @else if (errorCarga) {
+  <ion-text color="danger">
+    <p>No se pudieron cargar las películas. Verifica la conexión y la configuración de la API.</p>
+  </ion-text>
+} @else if (peliculas.length === 0) {
+  <ion-text color="medium">
+    <p>No hay películas disponibles.</p>
+  </ion-text>
+} @else {
+  <ion-list>
+    @for (pelicula of peliculas; track pelicula.id) {
+      <ion-card button (click)="mostrarDetalles(pelicula)">
+        @if (pelicula.poster_path) {
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path"
+            [alt]="pelicula.title"
+          />
+        }
+
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="film"></ion-icon>
+            {{ pelicula.title }}
+          </ion-card-title>
+
+          <ion-card-subtitle>
+            {{ pelicula.release_date }}
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ pelicula.overview }}
+        </ion-card-content>
+      </ion-card>
+    }
+  </ion-list>
+}

@@ -1,0 +1,59 @@
+<section class="form-shell">
+  <div class="form-intro">
+    <span class="eyebrow">Lo mejor del cine</span>
+
+    <h1>Reserva tu entrada</h1>
+    <p>Completa tus datos y elige las fechas de tu película.</p>
+  </div>
+
+  <form [formGroup]="reservationForm" (ngSubmit)="submitReservation()" class="reservation-form">
+    <div class="form-grid">
+      <ion-item class="field full-width" lines="none">
+        <ion-label position="stacked">Nombre completo <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="name" type="text" placeholder="Nombre y apellidos" autocomplete="name"></ion-input>
+      </ion-item>
+
+      <ion-item class="field" lines="none">
+        <ion-label position="stacked">Correo electrónico <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="email" type="email" placeholder="tu@correo.com" autocomplete="email"></ion-input>
+      </ion-item>
+
+      <ion-item class="field" lines="none">
+        <ion-label position="stacked">Teléfono <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="phone" type="tel" placeholder="10 dígitos" autocomplete="tel"></ion-input>
+      </ion-item>
+
+      <ion-item class="field" lines="none">
+        <ion-label position="stacked">Fecha de reserva <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="checkIn" type="date"></ion-input>
+      </ion-item>
+
+      <ion-item class="field" lines="none">
+        <ion-label position="stacked">Reservas <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="guests" type="number" min="1" max="8"></ion-input>
+      </ion-item>
+
+      <ion-item class="field" lines="none">
+        <ion-label position="stacked">Tipo de entrada <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select formControlName="roomType" interface="popover">
+          <ion-select-option value="standard">VIP</ion-select-option>
+          <ion-select-option value="familiar">Matiné</ion-select-option>
+          <ion-select-option value="suite">3D</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <ion-button id="open-toast" expand="block" color="primary" type="submit" [disabled]="reservationForm.invalid">
+      Solicitar reservación
+    </ion-button>
+    <p id="message" class="form-message">
+      Nosotros nos comunicaremos con usted después de la reservación para confirmar y proporcionar sus credenciales de acceso.
+    </p>
+    <ion-toast
+      trigger="open-toast"
+      message="Su solicitud de reservación fue enviada. Nos comunicaremos con usted para confirmar la reservación."
+      duration="3000"
+    ></ion-toast>
+    <p class="form-note">Los campos marcados con * son obligatorios.</p>
+  </form>
+</section>
