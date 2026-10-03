@@ -1,0 +1,7 @@
+{
+  "name": "pre_examen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
